@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="css/styledash.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- start of aside -->
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <h2>BooksForBooks</h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-symbols-outlined">
+                        close
+                    </span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="#" class="active">
+                    <span class="material-symbols-outlined">
+                        dashboard
+                    </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="#" id="mybooks">
+                    <span class="material-symbols-outlined">
+                        book
+                    </span>
+                    <h3>My Books</h3>
+                </a>
+                <a href="/useraddbook">
+                    <span class="material-symbols-outlined">
+                        add_box
+                    </span>
+                    <h3>Add a Book</h3>
+                </a>
+                <a href="/userexplore">
+                    <span class="material-symbols-outlined">
+                        globe
+                    </span>
+                    <h3>Explore</h3>
+                </a>
+                <a href="/notifications">
+                    <span class="material-symbols-outlined">
+                        notifications_active
+                    </span>
+                    <h3>Notifications</h3>
+                    <span class="notification-count">
+                        <%=notificationCnt%>
+                    </span>
+                </a>
+                <a href="#" id="search">
+                    <span class="material-symbols-outlined">
+                        search
+                    </span>
+                    <h3>Search</h3>
+                </a>
+                <a href="/logout">
+                    <span class="material-symbols-outlined log-out-btn">
+                        logout
+                    </span>
+                    <h3>Log Out</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- End of the aside -->
+        <main>
+            <h1>Dashboard</h1>
+            <!-- Start of insights -->
+            <div class="insights">
+                <div class="books">
+                    <span class="material-symbols-outlined">
+                        library_books
+                    </span>
+                    <div class="middle">
+                        <h1 id="userbookcount"><%= bookCount %></h1>
+                        <h3>Books for sale</h3>
+                    </div>
+                    <small class="text-muted"><%= textB %></small>
+                </div>
+                <div class="transactions">
+                    <span class="material-symbols-outlined">
+                        partner_exchange
+                    </span>
+                    <div class="middle">
+                        <h1><%= transactionCount %></h1>
+                        <h3>Transactions made</h3>
+                    </div>
+                    <small class="text-muted"><%= textT %></small>
+                </div>
+                <div class="posts">
+                    <span class="material-symbols-outlined">
+                        edit_note
+                    </span>
+                    <div class="middle">
+                        <h1><%= postCount %></h1>
+                        <h3>Blog posts done</h3>
+                    </div>
+                    <small class="text-muted"><%= textP %></small>
+                </div>
+            </div>
+
+            <!-- End of insights -->
+
+            <div class="user-card">
+                <div class="header">
+                    <span class="material-symbols-outlined">
+                        account_circle
+                    </span>
+                    <h2>My Information</h2>
+                </div>
+                <div class="info" id="userInfo">
+                    <img id="userImage" src="<%= user.image %>" alt="User Image">
+                    <div class="texts">
+                        <ul>
+                            <li>
+                                <h3>Name: <%= user.name %>
+                                </h3>
+                            </li>
+                            <li>
+                                <h3>Phone: <%= user.phone %>
+                                </h3>
+                            </li>
+                            <li>
+                                <h3>Email: <%= user.email %>
+                                </h3>
+                            </li>
+                            <li>
+                                <h3>Address: <%= user.address %>
+                                </h3>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- End of main -->
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-outlined">
+                        menu
+                    </span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-outlined active">
+                        light_mode
+                    </span>
+                    <span class="material-symbols-outlined">
+                        dark_mode
+                    </span>
+                </div>
+                <div class="profile-photo">
+                    <img src="<%= user.image %>" alt="User Image">
+                </div>
+            </div>
+
+            <div class="blog">
+                <h2>Blog</h2>
+                <div class="posts">
+
+                    <div class="post">
+                        <div class="profile-photo">
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Mike_Tyson_2019_by_Glenn_Francis.jpg/1200px-Mike_Tyson_2019_by_Glenn_Francis.jpg">
+                        </div>
+                        <div class="message">
+                            <p>I am Mike Tyson. I recieved my order through gps drone. Thank you!</p>
+                            <small class="text-muted">- <b>Mike Tyson</b> 1 year ago</small>
+                        </div>
+                    </div>
+
+                    <!-- Loop for all posts -->
+                    <% for (let i=0; i < blog.length; i++) { %>
+                        <div class="post">
+                            <div class="profile-photo">
+                                <img src="<%= blog[i][1] %>">
+                            </div>
+                            <div class="message">
+                                <p id="post-msg">
+                                    <%= blog[i][2] %>
+                                </p>
+                                <small class="text-muted name">- <b>
+                                        <%= blog[i][0] %>
+                                    </b>
+                                    <%= blog[i][3] %>
+                                </small>
+                            </div>
+                        </div>
+                        <% } %>
+                            <div class="write-post">
+                                <div class="profile-photo">
+                                    <img src="<%= user.image %>" alt="User Image">
+                                </div>
+                                <div class="message">
+                                    <textarea id="postContent" placeholder="Write your post..."
+                                        class="no-resize"></textarea>
+                                    <span class="material-symbols-outlined send-btn">
+                                        send
+                                    </span>
+                                </div>
+                            </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script> -->
+<script src="js/user/scriptdash.js"></script>
+
+</html>

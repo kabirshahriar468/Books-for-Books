@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="css/style-addbook.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- start of aside -->
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <h2>BooksForBooks</h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-symbols-outlined">
+                        close
+                    </span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="/authordashboard" class="active">
+                    <span class="material-symbols-outlined">
+                        dashboard
+                    </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="authorbooks">
+                    <span class="material-symbols-outlined">
+                        book
+                    </span>
+                    <h3>My Books</h3>
+                </a>
+                <!-- <a href="/useraddbook">
+                    <span class="material-symbols-outlined">
+                        add_box
+                    </span>
+                    <h3>Add a Book</h3>
+                </a>
+                <a href="/userexplore">
+                    <span class="material-symbols-outlined">
+                        globe
+                    </span>
+                    <h3>Explore</h3>
+                </a> -->
+                <!-- <a href="#">
+                    <span class="material-symbols-outlined">
+                        notifications_active
+                    </span>
+                    <h3>Notifications</h3>
+                    <span class="notification-count">0</span>
+                </a> -->
+                <a href="authorupdate">
+                    <span class="material-symbols-outlined">
+                        search
+                    </span>
+                    <h3>Update Info</h3>
+                </a>
+                <a href="/logout">
+                    <span class="material-symbols-outlined log-out-btn">
+                        logout
+                    </span>
+                    <h3>Log Out</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- End of the aside -->
+        <main>
+            <h1>Dashboard</h1>
+            <!-- Start of insights -->
+            <div class="insights">
+                <div class="books">
+                    <span class="material-symbols-outlined">
+                        library_books
+                    </span>
+                    <div class="middle">
+                        <h1 id="userbookcount">25</h1>
+                        <h3>Books for sale</h3>
+                    </div>
+                    <small class="text-muted">Highest till now</small>
+                </div>
+                <div class="transactions">
+                    <span class="material-symbols-outlined">
+                        partner_exchange
+                    </span>
+                    <div class="middle">
+                        <h1>25</h1>
+                        <h3>Transactions made</h3>
+                    </div>
+                    <small class="text-muted">Highest till now</small>
+                </div>
+                <div class="posts">
+                    <span class="material-symbols-outlined">
+                        edit_note
+                    </span>
+                    <div class="middle">
+                        <h1>25</h1>
+                        <h3>Blog posts done</h3>
+                    </div>
+                    <small class="text-muted">Highest till now</small>
+                </div>
+            </div>
+
+            <!-- End of insights -->
+
+            <div class="user-card">
+                <div class="header">
+                    <span class="material-symbols-outlined">
+                        account_circle
+                    </span>
+                    <h2>My Information</h2>
+                </div>
+                <div class="info">
+                    <img id="userImage" src="<%= author.image %>" alt="Author Image">
+                    <div class="texts">
+                        <h3>Name: <%= author.authorName %></h3>
+                        <h3>URL: <%= author.url %></h3>
+                        <h3>Email: <%= author.email %></h3>
+                        <h3>Description: <%= author.description %></h3>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+</body>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script> -->
+<script src="js/Author/scriptdash.js"></script>
+
+</html>

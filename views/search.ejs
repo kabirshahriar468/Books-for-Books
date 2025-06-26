@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="/css/search.css">
+    <title>Search</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- start of aside -->
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <h2>BooksForBooks</h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-symbols-outlined">
+                        close
+                    </span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="#" id="dashboard">
+                    <span class="material-symbols-outlined">
+                        dashboard
+                    </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="#" id="mybooks">
+                    <span class="material-symbols-outlined">
+                        book
+                    </span>
+                    <h3>My Books</h3>
+                </a>
+                <a href="useraddbook">
+                    <span class="material-symbols-outlined">
+                        add_box
+                    </span>
+                    <h3>Add a Book</h3>
+                </a>
+                <a href="#" id="explore">
+                    <span class="material-symbols-outlined">
+                        globe
+                    </span>
+                    <h3>Explore</h3>
+                </a>
+                <a href="/notifications">
+                    <span class="material-symbols-outlined">
+                        notifications_active
+                    </span>
+                    <h3>Notifications</h3>
+                    <span class="notification-count">0</span>
+                </a>
+                <a href="#" class="active">
+                    <span class="material-symbols-outlined">
+                        search
+                    </span>
+                    <h3>Search</h3>
+                </a>
+                <a href="/logout">
+                    <span class="material-symbols-outlined">
+                        logout
+                    </span>
+                    <h3>Log Out</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- End of the aside -->
+
+        <!-- Start of main -->
+
+        <main>
+            <div class="top">
+                <div class="left">
+                    <h1>Search</h1>
+                </div>
+                <div class="right">
+                    <button id="menu-btn">
+                        <span class="material-symbols-outlined">
+                            menu
+                        </span>
+                    </button>
+                    <div class="theme-toggler">
+                        <span class="material-symbols-outlined active">
+                            light_mode
+                        </span>
+                        <span class="material-symbols-outlined">
+                            dark_mode
+                        </span>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="<%= dp %>" alt="User Image">
+                    </div>
+                </div>
+
+                <div class="search-container">
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search..." value="<%= searchTerm %>">
+                        <button type="button" id="search-button">Search</button>
+                    </div>
+                    
+                    <div class="filter-dropdown">
+                        <select id="filter-select" value="<%= filterOption %>">
+                            <option value="none" <%=filterOption==='none' ? 'selected' : '' %>>No Filter</option>
+                            <option value="title" <%=filterOption==='title' ? 'selected' : '' %>>By Title</option>
+                            <option value="author" <%=filterOption==='author' ? 'selected' : '' %>>By Author</option>
+                            <option value="genre" <%=filterOption==='genre' ? 'selected' : '' %>>By Genre</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="bottom">
+
+                <!-- <div class="search-container">
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search..." value="<%= searchTerm %>">
+                        <button type="button" id="search-button">Search</button>
+                    </div>
+                    
+                    <div class="filter-dropdown">
+                        <select id="filter-select" value="<%= filterOption %>">
+                            <option value="none" <%=filterOption==='none' ? 'selected' : '' %>>No Filter</option>
+                            <option value="title" <%=filterOption==='title' ? 'selected' : '' %>>By Title</option>
+                            <option value="author" <%=filterOption==='author' ? 'selected' : '' %>>By Author</option>
+                            <option value="genre" <%=filterOption==='genre' ? 'selected' : '' %>>By Genre</option>
+                        </select>
+                    </div>
+                </div> -->
+
+
+
+                <% for (let i=0; i < bookdata.length; i++) { %>
+                    <div class="book-card">
+                        <div class="book">
+                            <div class="book-img">
+                                <img src="<%= bookdata[i][13] %>" alt="book-img">
+                            </div>
+                            <div class="detail">
+
+                                <h2>
+                                    <%= bookdata[i][6] %>
+                                </h2>
+                                <h3>Author: <%= bookdata[i][14] %>
+                                </h3>
+                                <h3>Publisher: <%= bookdata[i][19] %>
+                                </h3>
+                                <h3>Owner: <%= bookdata[i][0] %>
+                                </h3>
+                                <h1>$<%= bookdata[i][9] %>
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="buttons">
+
+                            <% if (bookdata[i][25]===userID ) { %>
+                                <button type="button" class="btn btn-outline-primary" id="edit-btn">Edit</button>
+                                <button type="button" class="btn btn-outline-primary" id="drop-btn">Drop</button>
+                                <% } else { %>
+                                    <button type="button" class="btn btn-outline-primary" id="sell-btn">Sell</button>
+                                    <button type="button" class="btn btn-outline-primary" id="excng-btn">Exchange</button>
+                                    <% } %>
+                        </div>
+                    </div>
+                    <div class="popup" id="bookpopup<%= i %>">
+                        <div class="popup-content">
+                            <div class="top">
+                                <div class="book-details">
+                                    <div class="book-image">
+                                        <img src="<%= bookdata[i][13] %>" alt="book-img">
+                                    </div>
+                                    <div class="book-text">
+                                        <h3>About the Book</h3>
+                                        <h4>Title: <%= bookdata[i][6] %>
+                                        </h4>
+                                        <h5>Overview: <%= bookdata[i][8] %>
+                                        </h5>
+                                        <h4>ISBN: <%= bookdata[i][5] %>
+                                        </h4>
+                                        <h4>Publish Year: <%= bookdata[i][7] %>
+                                        </h4>
+                                        <h4>Genre: <%= bookdata[i][10] %>
+                                                <%= bookdata[i][11] %>
+                                                    <%= bookdata[i][12] %>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="owner-details">
+                                    <div class="dp">
+                                        <img src="<%= bookdata[i][4] %>" alt="owner-img">
+                                    </div>
+                                    <div class="owner-text">
+                                        <h3>About the Owner</h3>
+                                        <h4>Name: <%= bookdata[i][0] %>
+                                        </h4>
+                                        <h4>Phone: <%= bookdata[i][2] %>
+                                        </h4>
+                                        <h4>Email: <%= bookdata[i][1] %>
+                                        </h4>
+                                        <h4>Address: <%= bookdata[i][3] %>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <div class="author-details">
+                                    <div class="dp">
+                                        <img src="<%= bookdata[i][18] %>" alt="author-img">
+                                    </div>
+                                    <div class="author-text">
+                                        <h3>About the Author</h3>
+                                        <h4>Name: <%= bookdata[i][14] %>
+                                        </h4>
+                                        <h5>Bio: <%= bookdata[i][17] %>
+                                        </h5>
+                                        <h4>Email: <%= bookdata[i][16] %>
+                                        </h4>
+                                        <h4>URL: <%= bookdata[i][15] %>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="publisher-details">
+                                    <div class="dp">
+                                        <img src="<%= bookdata[i][24] %>" alt="publisher-img">
+                                    </div>
+                                    <div class="publisher-text">
+                                        <h3>About the Publisher</h3>
+                                        <h4>Name: <%= bookdata[i][19] %>
+                                        </h4>
+                                        <h4>Background: <%= bookdata[i][23] %>
+                                        </h4>
+                                        <h4>Email: <%= bookdata[i][21] %>
+                                        </h4>
+                                        <h4>URL: <%= bookdata[i][20] %>
+                                        </h4>
+                                        <h4>Address: <%= bookdata[i][22] %>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+
+
+
+            </div>
+
+        </main>
+
+        <!-- End of main -->
+
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+<script src="/js/user/search.js"></script>
+
+</html>

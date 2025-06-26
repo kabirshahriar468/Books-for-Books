@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+body {
+    margin: 0;
+    /* overflow: hidden; */
+    position: relative;
+}
+
+.bg-img{
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    filter: brightness(0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 9fr 1fr;
+}
+
+.container .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: white;
+}
+
+.container .main {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    /* font-family: poppins, sans-serif; */
+}
+
+.container .main .left {
+    margin-top: 15rem;
+    margin-left: 2rem;
+}
+
+.container .main .left .intro {
+    font-family: poppins, sans-serif;
+    padding-bottom: 2rem;
+}
+
+.container .main .right {
+    margin-left: 4rem;
+}
+
+.container .main .right .up {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    margin-top: 14rem;
+}
+
+.container .main .right .down {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    margin-top: 0rem;
+}
+
+@media (max-width: 1000px) {
+    .container .main{
+        margin-left: -6.2rem;
+    }
+    .container .main .right {
+        margin-left: 3rem;
+    }
+    .container .main .right .up {
+        margin-top: 15rem;
+    }
+}
+
+.bordered-section {
+    border: 4px solid #dee2e6; 
+    padding: 1.5rem;
+    height: 175px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: 2rem;
+  }
